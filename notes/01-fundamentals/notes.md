@@ -64,10 +64,27 @@ interface User {
   name: string;
   email: string;
 }
+// or
+type User = {
+  id: Number,
+  name: string,
+  email: string
+}
+
+
+// usage
+
+const user: User = {
+  id: "67",
+  name: "slim shady",
+  email: "example@mail.com"
+}
+
+// both can be used for the same purpose but both have their set of advantage and it's a whole different rabbithole so let's not get into that haha
 ```
 
 * Defines structure
-* Used everywhere in backend
+* Used extensively everywhere in backend
 
 ---
 
@@ -149,7 +166,7 @@ import express from "express";
 const app = express();
 app.use(express.json());
 
-app.get("/", (req, res) => {
+app.get("/", function(req, res){
   res.send("API running");
 });
 
@@ -163,7 +180,7 @@ app.listen(3000);
 (actual structure → src/modules/user/user.route.ts)
 
 ```ts
-app.get("/users", (req, res) => {
+app.get("/users", function(req, res){
   res.json([]);
 });
 ```
@@ -218,6 +235,8 @@ app.get("/users/:id", (req, res) => {
   const user = users.find(u => u.id === Number(req.params.id));
   res.json(user);
 });
+
+// TODO: DO IT WITH QUERY PARAMETER
 ```
 
 ---
